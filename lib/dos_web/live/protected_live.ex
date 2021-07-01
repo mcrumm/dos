@@ -7,6 +7,7 @@ defmodule DosWeb.ProtectedLive do
     <p>Welcome to the Internet, <%= @current_user.email %>!</p>
 
     <%= live_redirect("Secret", to: Routes.secret_path(@socket, :index)) %>
+    | <%= live_redirect("Reload", to: Routes.protected_path(@socket, :index)) %>
     """
   end
 end
