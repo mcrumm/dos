@@ -49,6 +49,11 @@ defmodule DosWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    live_session :protected, on_mount: {DosWeb.LiveAuth, :ensure_mounted_current_user} do
+      live "/protected", ProtectedLive, :index
+      live "/secret", SecretLive, :index
+    end
   end
 
   scope "/", DosWeb do
@@ -58,7 +63,5 @@ defmodule DosWeb.Router do
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
-
-    live "/protected", ProtectedLive, :index
   end
 end

@@ -1,12 +1,12 @@
 defmodule DosWeb.ProtectedLive do
   use DosWeb, :live_view
 
-  on_mount {DosWeb.LiveAuth, :ensure_mounted_current_user}
-
   @impl true
   def render(assigns) do
     ~L"""
-    Welcome to the Internet, <%= @current_user.email %>!
+    <p>Welcome to the Internet, <%= @current_user.email %>!</p>
+
+    <%= live_redirect("Secret", to: Routes.secret_path(@socket, :index)) %>
     """
   end
 end
