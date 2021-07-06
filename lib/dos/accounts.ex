@@ -232,6 +232,16 @@ defmodule Dos.Accounts do
   end
 
   @doc """
+  Gets the user with the given signed token.
+
+  Raises if no user for token was found.
+  """
+  def get_user_by_session_token!(token) do
+    {:ok, query} = UserToken.verify_session_token_query(token)
+    Repo.one!(query)
+  end
+
+  @doc """
   Deletes the signed token with the given context.
   """
   def delete_session_token(token) do

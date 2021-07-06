@@ -15,7 +15,7 @@
         <nav role="navigation">
           <ul>
             <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            
+            <li><%= link "Protected Page", to: Routes.protected_path(@conn, :index) %></li>
           </ul>
           <%= render "_user_menu.html", assigns %>
         </nav>
